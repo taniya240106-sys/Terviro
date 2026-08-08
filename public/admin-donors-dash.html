@@ -27,6 +27,24 @@
 </head>
 
 <body ng-app="mouduleKuch" ng-controller="controllerKuch">
+   <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+
+            </div>
+        </div>
+    </nav>
   <center>
     <input type="button" ng-click="doShowAll();" value="Fetch all Donors">
     <table width="600" class="table table-striped-columns w-75 mt-5 text-center" border="1">

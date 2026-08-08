@@ -767,7 +767,7 @@ app.get("/equipFinder", function (req, resp) {
 // -----shw city----//
 app.get("/Show-Citiess", function (req, resp) {
     //? is called in Parameter
-    mysqlCon.query("select distinct city  from dprofiles", function (err, resultJSONAry) {
+    mysqlCon.query("select distinct p.city  from dprofiles inner join equipments e on p.emailid=e.emailid", function (err, resultJSONAry) {
         if (err == null) {
             console.log(resultJSONAry)
             resp.send(resultJSONAry)

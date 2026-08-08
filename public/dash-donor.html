@@ -21,10 +21,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
 
     <script>
-        function logout()
-        {
+        function logout() {
             localStorage.removeItem("activeuser");
-            location.href="/";
+            location.href = "/";
         }
     </script>
 
@@ -39,13 +38,13 @@
     <script>
         let myModule = angular.module("moduleKuchBhi", []);
         let myController = myModule.controller("controllerKuchBhi", function ($scope, $http) {
-  $scope.email=localStorage.getItem("activeuser")
+            $scope.email = localStorage.getItem("activeuser")
             $scope.doShowAll = function () {
                 // alert(emailidKuch)
-            $scope.email=localStorage.getItem("activeuser")
-                let url = "/fetch-all-medManager?emailKeyKuch=" +$scope.email;
+                $scope.email = localStorage.getItem("activeuser")
+                let url = "/fetch-all-medManager?emailKeyKuch=" + $scope.email;
                 $http.get(url).then(function (resp) {
-                  //  alert(JSON.stringify(resp.data))
+                    //  alert(JSON.stringify(resp.data))
                     $scope.jsonArray = resp.data;
                 }, function (err) {
                     alert(err);
@@ -80,13 +79,13 @@
             //------------fetch equip--------//
             $scope.doShowEquipments = function () {
                 //  alert("Button Clicked");
-                
+
                 $scope.email = localStorage.getItem("activeuser");
                 //  alert($scope.email);
                 let url = "/fetch-equipment?emailidKuch=" + $scope.email;
                 $http.get(url).then(function (resp) {
-                //  alert(JSON.stringify(resp.data))
-                     $scope.jsonArray = resp.data;
+                    //  alert(JSON.stringify(resp.data))
+                    $scope.jsonArray = resp.data;
                 }, function (err) {
                     alert(err);
                 });
@@ -109,12 +108,13 @@
     </script>
 </head>
 
-<body ng-app="moduleKuchBhi" ng-controller="controllerKuchBhi" onload="setEmail()" style=" background:linear-gradient(135deg,#eef6ff,#ffffff);  background-attachment:fixed; min-height:100vh;">
+<body ng-app="moduleKuchBhi" ng-controller="controllerKuchBhi" onload="setEmail()"
+    style=" background:linear-gradient(135deg,#eef6ff,#ffffff);  background-attachment:fixed; min-height:100vh;">
     <!-- nav bar -->
-   <nav class="navbar navbar-expand-lg bg-white shadow-sm  py-1">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm  py-1">
         <div class="container-fluid px-4">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                    <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;">
+                <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -123,23 +123,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  
+
                 </ul>
-               
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> -->
-                    <button class="btn btn-outline-danger" type="button" id="logout" onclick="logout()">LOGOUT</button>
-               
+
+                <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> -->
+                <button class="btn btn-outline-danger" type="button" id="logout" onclick="logout()">LOGOUT</button>
+
             </div>
         </div>
     </nav>
     <!-- nav end -->
-  
-     <div class="container text-center mt-1 mb-1">
-    <h3 class="fw-bold">Make a Difference with Terviro</h3>
-    <p class="text-muted">
-   Together, we can connect care with those who need it.
-    </p>
-</div> 
+
+    <div class="container text-center mt-1 mb-1">
+        <h3 class="fw-bold">Make a Difference with Terviro</h3>
+        <p class="text-muted">
+            Together, we can connect care with those who need it.
+        </p>
+    </div>
     <!-- cards -->
     <div class="container">
         <div class="row g-4">
@@ -246,14 +246,13 @@
                         <div class="col-md-8">
                             <label for="txtEmail" class="form-label">Email Id</label>
                             <span id="errEmail">*</span>
-                            <input type="email" class="form-control" ng-model="email" id="txtEmailMed"
-                                name="txtEmail" aria-describedby="emailHelp" readonly>
-                                <!-- readonly cant edit in email only raed -->
+                            <input type="email" class="form-control" ng-model="email" id="txtEmailMed" name="txtEmail"
+                                aria-describedby="emailHelp" readonly>
+                            <!-- readonly cant edit in email only raed -->
 
                         </div>
                         <div class="col-md-3">
-                            <button type="button" ng-click="doShowAll();"
-                                class="btn btn-primary">Fetch</button>
+                            <button type="button" ng-click="doShowAll();" class="btn btn-primary">Fetch</button>
                         </div>
                     </div>
 
