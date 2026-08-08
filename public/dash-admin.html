@@ -1,63 +1,85 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  </head>
-  <body style="background:linear-gradient(135deg,#eef6ff); min-height:100vh;">
-    <!-- nav bar -->
-     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-   
-  </div>
-</nav> <!-- nav end -->
-<hr>
-<!-- cards -->
- <div class="container">
-    <div class="row justify-content-center g-4 mt-4">
-         <div class="col-md-3 ">
-                <div class="card h-100 shadow rounded-4">
-                    
-                     <img src="pics/user.jfif" class="card-img-top"  style="height:220px; object-fit:cover;" alt="..."> 
-                    <div class="card-body">
-                        <h5 class="card-title">👤 User Management</h5>
-                        <ul><a href="/admin-users-dash" class="btn btn-primary">View Users</a></ul>
-                    </div>
-                </div>
-            </div>
-             <div class="col-md-3 ">
-                <div class="card h-100 shadow rounded-4">
-                    
-                     <img src="pics/donor.jfif" class="card-img-top"  style="height:220px; object-fit:cover;" alt="..."> 
-                    <div class="card-body">
-                        <h5 class="card-title">🩸 Donor Management</h5>
-                       <ul><a href="/admin-donors-dash" class="btn btn-primary">View Donors</a></ul>
-                    </div>
-                </div>
-            </div>
 
-             <div class="col-md-3 ">
-               <div class="card h-100 shadow rounded-4">
-                    
-                   <img src="pics/med.jfif" class="card-img-top" style="height:220px; object-fit:cover;" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">💊 Medicine Management</h5>
-                       <ul><a href="/allmed" class="btn btn-primary">View Medicines</a></ul>
-                    </div>
-                </div>
-            </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script>
+
+    function logout() {
+      localStorage.removeItem("activeuser");
+      location.href = "/";
+    }
+  </script>
+</head>
+
+<body style="background:linear-gradient(135deg,#eef6ff); min-height:100vh;">
+  <!-- nav bar -->
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        </ul>
+
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> -->
+        <button class="btn btn-outline-danger" type="button" id="logout" onclick="logout()">LOGOUT</button>
+
+      </div>
+    </div>
+  </nav> <!-- nav end -->
+  <hr>
+  <!-- cards -->
+  <div class="container">
+    <div class="row justify-content-center g-4 mt-4">
+      <div class="col-md-3 ">
+        <div class="card h-100 shadow rounded-4">
+
+          <img src="pics/user.jfif" class="card-img-top" style="height:220px; object-fit:cover;" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">👤 User Management</h5>
+            <ul><a href="/admin-users-dash" class="btn btn-primary">View Users</a></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 ">
+        <div class="card h-100 shadow rounded-4">
+
+          <img src="pics/donor.jfif" class="card-img-top" style="height:220px; object-fit:cover;" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">🩸 Donor Management</h5>
+            <ul><a href="/admin-donors-dash" class="btn btn-primary">View Donors</a></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 ">
+        <div class="card h-100 shadow rounded-4">
+
+          <img src="pics/med.jfif" class="card-img-top" style="height:220px; object-fit:cover;" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">💊 Medicine Management</h5>
+            <ul><a href="/allmed" class="btn btn-primary">View Medicines</a></ul>
+          </div>
+        </div>
+      </div>
 
     </div>
- </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
