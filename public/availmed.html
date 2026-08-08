@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script>
+      function doShowPrev(fileCtrl,prev){
+          const file=fileCtrl.files[0];
+          if(file){
+              prev.src=URL.createObjectURL(file);
+          }
+      }
+  </script>
+  <script>
+    function setEmail(){
+        document.getElementById("inputEmail").value=localStorage.getItem("activeuser")
+      }
+  </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  </head>
+  <body onload="setEmail()">
+     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;"> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+    <div class="container border mt-4 mb-4 border shadow">
+      <div class="row">
+       <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+    <h3 class="mb-0">💊 Avail Medicine</h3>
+    
+</div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-4 border">
+          <form enctype="multipart/form-data"  method="post">
+            <center>
+              <div class="text-center col-md-6 mt-4">
+                <input type="file" class="form-control" name="medPic" onchange="doShowPrev(this,prevMedicine)">
+                <br>
+                <img src="" id="prevMedicine"  name="prevMedicine" class="img-thumbnail rounded shadow mt-3" width="180" height="180">
+                <br>
+                Medicine Image:
+              </div>
+            </center>
+        </div>
+  
+        <div class="col-md-8">
+          <div class="row g-4 mt-2">
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail" name="inputEmail" readonly>
+              <!-- readonly only read no edit -->
+            </div>
+          </div>
+          <div class="row g-4 mt-2">
+            <div class="col-md-4">
+              <label for="inputmedname" class="form-label">Medicine Name</label>
+              <input type="text" class="form-control" id="inputMedName" name="inputMedName">
+            </div>
+              <div class="col-md-3">
+                <label for="inputdate" class="form-label">Exp.Date</label>
+              <input type="date" class="form-control" id="inputDate" name="inputDate" >
+              </div>
+              <div class="col-md-4">
+                <label for="inputcompany" class="form-label">Company Name</label>
+              <input type="text" class="form-control" id="inputCompany" name="inputCompany">
+              </div>
+
+             <div class="row g-4 mt-2">
+                <div class="col-md-5">
+                  <label class="form-label">Packing Type</label>
+                    <select class="form-select" id="packing" name="packing" aria-label="Default select example">
+                                      <option selected>Select Packing Type</option>
+                                      <option value="SYRUP">SYRUP</option>
+                                      <option value="TABLETS">TABLETS</option>
+                                      <option value="SACHET">SACHET</option>
+                                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Quantity</label>
+                   <select class="form-select" id="qty" name="qty" aria-label="Default select example">
+                                      <option selected>Select Quantity </option>
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                      <option value="6">6</option>
+                                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="inputinfo" class="form-control">Other Info</label>
+                  <input type="text" class="form-control" id="inputInfo" name="inputInfo">
+                
+              </div>
+
+            </div>
+            <div class="row g-4 mt-2">
+              <div class="col-md-12 text-center">
+                 <button type="submit" formaction="/med-data" class="btn btn-outline-primary btn-lg  shadow" id="btnavail" name="btnavail">AVAIL</button>
+              </div>
+              
+          </div>
+            </form>
+          </div>
+      
+
+            </form>
+          </div>
+        </div>
+      </div>
+  
+  
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

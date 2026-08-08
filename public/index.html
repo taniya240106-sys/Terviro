@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
+    <style>
+        .navbar {
+            min-height: 62px;
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-nav {
+            gap: 8px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #1e293b !important;
+            padding: 9px 13px !important;
+            border-radius: 8px;
+            transition: 0.2s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #16A765 !important;
+            background: #f0fdf4;
+        }
+
+        /* Signup */
+
+        .signup-btn {
+            border: 2px solid #16A765 !important;
+            color: #16A765 !important;
+            background: white !important;
+            border-radius: 25px !important;
+            font-weight: 600;
+        }
+
+        .signup-btn:hover {
+            background: #f0fdf4 !important;
+        }
+
+        /* Login */
+
+        .login-btn {
+            background: #16A765 !important;
+            color: white !important;
+            border: 2px solid #16A765 !important;
+            border-radius: 25px !important;
+            font-weight: 600;
+        }
+
+        .login-btn:hover {
+            background: #128b55 !important;
+            border-color: #128b55 !important;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5eef4 !important;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(6, 59, 99, 0.18) !important;
+        }
+    </style>
+</head>
+
+<body onload="doIT();">
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm  py-1">
+        <div class="container-fluid px-4">
+            <!-- Logo + Terviro -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;">
+                <!-- <span class="ms-2 fw-bold" style="font-size:28px; color:#063B63;">
+                    Terviro
+                </span> -->
+            </a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="#services"> Services</a>
+                    </li>
+                    <!--  <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="/NgoDash">NGO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="/donorDash">Donors</a>
+                    </li>
+                    <!-- <ul><a href="/adminDash">Admin Dashboard</a></ul> -->
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="/needyDash">Needy</a>
+                    </li>
+                    <!-- <ul><a href="/medFinder">Mediciene Finder</a></ul> -->
+                    <!-- <ul><a href="/ngo-registration">ngo-Registration</a></ul> -->
+                    <!-- <ul><a href="/ngoFinder">NGO Finder</a></ul> -->
+                    <!-- <ul><a href="/equipFinder">Equipment Finder</a></ul> -->
+                    <!-- <ul><a href="/needy-profile">Needy-profile</a></ul> -->
+
+                    <!-- <ul><a href="/donorprofile">Donor Profile</a></ul> -->
+
+                    <!-- <ul><a href="/availmed">Avail Medicine</a></ul> -->
+
+                    <!-- <ul><a href="/availEquip">Avail Equipment</a></ul> -->
+                    <!-- <ul><a href="/admin-users-dash">Admin Users Dash</a></ul> -->
+                    <!-- <ul><a href="/admin-donors-dash">Admin Donors Dash</a></ul> -->
+
+                </ul>
+                <!-- gap-2= Adds space between the buttons/items. -->
+                <form class="d-flex gap-2">
+
+                    <button class="btn btn-outline-success rounded-pill px-4" type="button" data-bs-toggle="modal"
+                        data-bs-target="#SignupModal">Signup</button>
+                    <button class="btn btn-outline-success rounded-pill px-4" type="button" data-bs-toggle="modal"
+                        data-bs-target="#LoginModel">Login</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- nav bar end -->
+    <!-- SIGN UP  MODAL  begin-->
+    <div class="modal fade" id="SignupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  ">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Signup Modal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- profile pic -->
+                    <!-- profile pic -->
+                    <div class="text-center mb-4">
+                        <img src="pics/images.jpg" width="100" height="100" class="rounded-circle border">
+                    </div>
+                    <!-- sign up form begin -->
+                    <form>
+                        <div class="mb-3">
+                            <label for="txtEmail" class="form-label">Email Id</label>
+                            <span id="errEmail">*</span>
+                            <input type="email" class="form-control" id="txtEmail" name="txtEmail"
+                                aria-describedby="emailHelp">
+                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            <span id="msgSpan">*</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtPwd" class="form-label">Password</label>
+                            <span id="errPwd">*</span>
+                            <input type="password" class="form-control" id="txtPwd">
+                        </div>
+
+                        <div class="mb-3 ">
+                            User Type
+                            <select class="form-select" id="utype" name="utype" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="DONAR">DONAR</option>
+                                <option value="NEEDY">NEEDY</option>
+                                <option value="NGO">NGO</option>
+
+                            </select>
+                        </div>
+
+                    </form>
+                    <!-- sign up form end -->
+                </div>
+                <div class="text-center mb-4">
+
+                    <button type="button" class="btn btn-primary" id="btnSignup">Sign Up Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SIGNUP MODAL ENDS -->
+
+    <!-- login modal starts -->
+
+    <div class="modal fade" id="LoginModel" tabindex="-1" aria-labelledby="LoginModel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header bg-warning">
+                    <h1 class="modal-title fs-5" id="LoginModel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- profile pic -->
+                    <div class="text-center mb-4">
+                        <img src="pics/images.jpg" width="100" height="100" class="rounded-circle border">
+                    </div>
+
+                    <!-- login form start -->
+                    <form>
+                        <div class="mb-3">
+                            <label for="txtEmail2" class="form-label">Email Id</label>
+                            <span id="errEmail2">*</span>
+                            <input type="email" class="form-control" id="txtEmail2" aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtPwd2" class="form-label">Password</label>
+                            <span id="errPwd2">*</span>
+                            <input type="password" class="form-control" id="txtPwd2">
+
+                        </div>
+
+
+
+                    </form>
+                    <!-- login form end -->
+                </div>
+                <div class="text-center">
+
+                    <button type="button" class="btn btn-primary  mb-3" id="btnlogin">Login Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- login modal ends -->
+    <!-- carousel -->
+    <!-- <div class="container"> -->
+    <div class="row">
+        <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel"
+            style="border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.2);">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0"
+                    class="active"></button>
+
+                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"></button>
+
+                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="pics/c1.png" style="height:500px; object-fit:cover;" class="d-block w-100" alt="...">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="pics/c2.png" style="height:500px; object-fit:cover;" class="d-block w-100" alt="...">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="pics/c3.png" style="height:500px; object-fit:cover;" class="d-block w-100" alt="...">
+
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- </div> -->
+    <div class="row" id="services" style="background-color:#063B63; color:white; line-height:40px;">
+        <div class="w-100 d-flex align-items-center justify-content-center"
+            style="height:45px; background-color:#063B63; color:white;">
+            <h4 class="m-0 fw-semibold" style="font-size:20px;">
+                Our Services
+            </h4>
+
+        </div>
+    </div>
+    <!-- cards -->
+    <!-- C-1 -->
+    <div class="container mt-5">
+        <div class="row justify-content-center g-5">
+            <div class="col-md-3">
+                <div class="card service-card h-100 border-0 shadow-lg rounded-4">
+                    <img src="pics/donate.png" class="card-img-top" alt="..." style="height:220px; object-fit:contain;">
+                    <div class="card-body text-center">
+
+                        <h5 class="fw-bold" style="color:#16A765;"> Medicine & Equipment Donation</h5>
+                        <p class="text-muted">
+                            Donate unused medicines and medical equipment to
+                            help patients, hospitals, and NGOs. Every donation
+                            brings hope to someone in need.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--  C-2-->
+            <div class="col-md-3">
+                <div class="card service-card h-100 border-0 shadow-lg rounded-4">
+                    <img src="pics/find and resource.png" class="card-img-top" alt="..."
+                        style="height:220px; object-fit:contain;">
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold" style="color:#0B5FA5">
+                            Find Healthcare Resources
+                        </h5>
+                        <p class="text-muted">
+                            Search available medicines, medical equipment,
+                            and nearby NGOs through one easy-to-use platform.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- C-3 -->
+            <div class="col-md-3">
+                <div class="card service-card h-100 border-0 shadow-lg rounded-4">
+                    <img src="pics/ngo.index.png" class="card-img-top" alt="..."
+                        style="height:220px; object-fit:contain;">
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold" style="color:#16A765;">
+                            NGO Collaboration
+                        </h5>
+                        <p class="text-muted">
+                            Connect with trusted NGOs to donate or receive
+                            healthcare resources quickly and securely.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- C-4 -->
+            <div class="col-md-3">
+                <div class="card service-card h-100 border-0 shadow-lg rounded-4">
+                    <img src="pics/12.png" class="card-img-top" alt="..." style="height:220px; object-fit:contain;">
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold" style="color:#0B5FA5">
+                            Easy Request & Donation
+                        </h5>
+
+                        <p class="text-muted"> Supporting Communities Together
+                            Connect with trusted NGOs that collect, manage, and distribute donated healthcare
+                            resources
+                            efficiently and transparently.</p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--  -->
+    <div class=" mt-5">
+
+        <div class="w-100 d-flex align-items-center justify-content-center"
+            style="height:45px; background-color:#063B63; color:white;">
+
+            <h4 class="m-0 fw-semibold">
+                How It Works
+            </h4>
+
+        </div>
+
+        <p class="text-center text-muted">
+            Connecting healthcare resources with people who need them
+        </p>
+
+        <div class="row text-center mt-4">
+
+            <div class="col-md-4">
+                <div class="p-4">
+                    <div class="fs-1">💚</div>
+                    <h4 style="color:#16A765;">1. Donor</h4>
+                    <p>
+                        Donate unused medicines or medical equipment
+                        through our platform.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4">
+                    <div class="fs-1">🏥</div>
+                    <h4 style="color:#063B63;">2. NGO</h4>
+                    <p>
+                        NGOs collect and manage healthcare resources
+                        for people in need.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4">
+                    <div class="fs-1">💙</div>
+                    <h4 style="color:#0B5FA5;">3. Recipient</h4>
+                    <p class="text-muted">
+                        People in need can find and receive
+                        available healthcare resources.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- OUR IMPACT -->
+    <!-- OUR IMPACT -->
+    <div style="background-color:white; padding:45px 0;">
+
+        <div class=" mt-4">
+
+            <div class="w-100 d-flex align-items-center justify-content-center"
+                style="height:45px; background-color:#063B63; color:white;">
+
+                <h4 class="m-0 fw-semibold" style="font-size:20px;">
+                    Our Impact
+                </h4>
+
+            </div>
+
+            <p class="text-center text-muted mb-5">
+                Together, we are making healthcare more accessible.
+            </p>
+
+            <div class="row text-center g-4">
+
+                <div class="col-md-3">
+                    <div class="p-4 rounded-4 shadow-sm h-100" style="border:1px solid #e5eef4;">
+                        <div style="font-size:40px;">💚</div>
+                        <h2 class="fw-bold" style="color:#16A765;">100+</h2>
+                        <h5 class="fw-bold" style="color:#063B63;">
+                            Donors
+                        </h5>
+                        <p class="text-muted mb-0">
+                            People contributing healthcare resources
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-4 rounded-4 shadow-sm h-100" style="border:1px solid #e5eef4;">
+                        <div style="font-size:40px;">🏥</div>
+                        <h2 class="fw-bold" style="color:#0B5FA5;">50+</h2>
+                        <h5 class="fw-bold" style="color:#063B63;">
+                            NGOs
+                        </h5>
+                        <p class="text-muted mb-0">
+                            Organizations working with our platform
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-4 rounded-4 shadow-sm h-100" style="border:1px solid #e5eef4;">
+                        <div style="font-size:40px;">💊</div>
+                        <h2 class="fw-bold" style="color:#16A765;">500+</h2>
+                        <h5 class="fw-bold" style="color:#063B63;">
+                            Resources Donated
+                        </h5>
+                        <p class="text-muted mb-0">
+                            Medicines and equipment made available
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-4 rounded-4 shadow-sm h-100" style="border:1px solid #e5eef4;">
+                        <div style="font-size:40px;">💙</div>
+                        <h2 class="fw-bold" style="color:#0B5FA5;">1000+</h2>
+                        <h5 class="fw-bold" style="color:#063B63;">
+                            People Helped
+                        </h5>
+                        <p class="text-muted mb-0">
+                            Connecting healthcare resources with those in need
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- OUR IMPACT END -->
+    <div class="mt-5">
+
+    <div class="row" style="background-color:#063B63; color:white; line-height:40px;">
+        <div class="w-100 d-flex align-items-center justify-content-center"
+            style="height:45px; background-color:#063B63; color:white;">
+
+            <h4 class="m-0 fw-semibold" style="font-size:20px;">
+                Know Us
+            </h4>
+
+        </div>
+    </div>
+    </div>
+    <!--  -->
+    <div class="container">
+        <div class="row p-3">
+            <!-- Left Section -->
+            <div class="col-md-6 border-end">
+
+                <div class="row align-items-center">
+                    <!-- image -->
+                    <div class="col-md-4 text-center">
+
+                        <img src="pics/sir" class="img-fluid rounded-circle shadow" alt="..."
+                            style="width:150px;height:150px;object-fit:cover;">
+                    </div>
+                    <!-- details -->
+                    <div class="col-md-8">
+                        <h4 class="fw-bold text-success">Under the Guidance Of</h4>
+                        <p>Mr.Rajesh Bansal</p>
+                        <p>Project Guide</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="col-md-6">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center">
+                        <img src="" class="img-fluid rounded-circle shadow"
+                            style="width:150px;height:150px;object-fit:cover;">
+                    </div>
+
+
+                    <div class="col-md-8">
+                        <h4 class="fw-bold text-primary">Meet The Developer</h4>
+                        <p>Taniya</p>
+                        <p>B.Tech CSE |Student Developer</p>
+                        <p>Developer of Terviro</p>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="mt-5">
+    <div class="row" style="background-color:#063B63; color:white; line-height:40px;">
+        <div class="w-100 d-flex align-items-center justify-content-center"
+            style="height:45px; background-color:#063B63; color:white;">
+
+            <h4 class="m-0 fw-semibold" style="font-size:20px;">
+                📍 Reach Us
+            </h4>
+
+        </div>
+    </div>
+</div>
+    <!--  map-->
+    <div class="row">
+        <div class="col-md-12 p-0">
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3449.2486200260573!2d74.92232847418443!3d30.17289121247595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39172d0bb1737c33%3A0xed9d3631bdaa7e49!2sGiani%20Zail%20Singh%20Campus%20College%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1784962010888!5m2!1sen!2sin"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer style="background-color:#063B63; color:white; padding:35px 0 15px 0;">
+
+        <div class="container">
+
+            <div class="row">
+
+                <!-- TERViro -->
+                <div class="col-md-5 mb-4">
+                    <h3 class="fw-bold">
+                        💚Terviro
+                    </h3>
+
+                    <p style="color:#DCEBF4;">
+                        Connecting donors, NGOs and people in need
+                        through healthcare resources.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="fw-bold">Quick Links</h5>
+
+                    <a href="/" class="d-block text-decoration-none" style="color:#DCEBF4;">
+                        Home
+                    </a>
+
+                    <a href="#services" class="d-block text-decoration-none" style="color:#DCEBF4;">
+                        Services
+                    </a>
+
+                    <a href="/NgoDash" class="d-block text-decoration-none" style="color:#DCEBF4;">
+                        NGO Dashboard
+                    </a>
+
+                    <a href="/donorDash" class="d-block text-decoration-none" style="color:#DCEBF4;">
+                        Donor Dashboard
+                    </a>
+
+                    <a href="/needyDash" class="d-block text-decoration-none" style="color:#DCEBF4;">
+                        Needy Dashboard
+                    </a>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold">Contact</h5>
+
+                    <p style="color:#DCEBF4;">
+                        📍 Bathinda, Punjab
+                    </p>
+
+                    <p style="color:#DCEBF4;">
+                        📧 support@terviro.com
+                    </p>
+
+                    <p style="color:#DCEBF4;">
+                        📞 +91 86993 48470
+                    </p>
+                </div>
+
+            </div>
+
+            <hr style="border-color:rgba(255,255,255,0.25);">
+
+            <div class="text-center">
+                <small style="color:#DCEBF4;">
+                    © 2026 Terviro. All Rights Reserved.
+                </small>
+            </div>
+
+        </div>
+
+    </footer>
+    <!-- FOOTER END -->
+    <script>
+
+        function doIT() {
+            const myCarouselElement = document.querySelector('#carouselExampleAutoplaying')
+
+            const carousel = new bootstrap.Carousel(myCarouselElement, {
+                interval: 2000,
+                touch: false
+            })
+        }
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- ajax sign up -->
+    <script>
+        $(document).ready(function () {
+            $("#txtEmail").blur(function () {
+                let obj = {
+                    url: "/check-email",
+                    data: {
+                        emailKuch: $("#txtEmail").val()
+                    }
+                }
+                $.ajax(obj).then(function (respStr) {
+                    $("#msgSpan").html(respStr);
+                }).fail(function (err) {
+                    alert(err.responseText);
+                })
+            })
+
+
+            //----------------------------------------//
+
+            $("#btnSignup").click(function () {
+
+                if ($("#txtEmail").val().trim() == "" || $("#txtPwd").val().trim() == "" || $("#utype").val() == "Open this select menu") {
+                    alert("Please fill all the fields.");
+                    return;
+                }
+
+
+
+                let obj = {
+                    url: "/signup-process-ajax",
+                    data: {
+                        emailKuch: $("#txtEmail").val(),
+                        pwdKuch: $("#txtPwd").val(),
+                        utypeKuch: $("#utype").val()
+                    }
+                }
+                $.ajax(obj).then(function (respStr) {
+                    alert(respStr);
+                }).fail(function (err) {
+                    alert(err.responseText);
+                });
+            });
+
+            // ----------ajax login------------------//
+
+            $("#btnlogin").click(function () {
+
+                if ($("#txtEmail2").val().trim() == "" || $("#txtPwd2").val().trim() == "") {
+                    // alert("Please fill all the fields.");
+                    return;
+                }
+
+                let obj = {
+                    url: "/login-process-ajax",
+                    data: {
+                        emailKuchlogin: $("#txtEmail2").val(),
+                        pwdKuchlogin: $("#txtPwd2").val()
+                    }
+                };
+                $.ajax(obj).then(function (respStr) {
+                    alert(respStr);
+                    if (respStr == "DONAR") {
+                        location.href = "/donorDash";
+                        localStorage.setItem("activeuser", $("#txtEmail2").val());  //global object to access all tabs
+                    }
+
+                    if (respStr == "NGO") {
+                        location.href = "/NgoDash";
+                        localStorage.setItem("activeuser", $("#txtEmail2").val());  //global object to access all tabs
+                    }
+
+                    if (respStr == "NEEDY") {
+                        location.href = "/needyDash";
+                        localStorage.setItem("activeuser", $("#txtEmail2").val());  //global object to access all tabs
+                    }
+
+                }).fail(function (err) {
+                    alert(err.responseText);
+                })
+            })
+            ////-------------regex--------------------///
+            $("#txtEmail").blur(function () {
+                let email = $(this).val();
+                let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                let res = regex.test(email);
+
+                if (res == false) {
+                    $("#errEmail").html("Invalid").addClass("notok").removeClass("ok");//addclass instead of css(for large number of data)
+                }
+                else {
+                    $("#errEmail").html("Valid").addClass("ok").removeClass("notok");
+                }
+
+            })
+            $("#txtPwd").blur(function () {
+                let pwd = $(this).val();
+                let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+                let res = regex.test(pwd);
+                if (res == false) {
+                    $("#errPwd").html("Invalid").addClass("notok").removeClass("ok");
+                }
+                else {
+                    $("#errPwd").html("Valid").addClass("ok").removeClass("notok");
+                }
+
+            })
+            //----------regex for login----------//
+            $("#txtEmail2").blur(function () {
+                let email = $(this).val();
+                let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                let res = regex.test(email);
+
+                if (res == false) {
+                    $("#errEmail2").html("Invalid").addClass("notok").removeClass("ok");//addclass instead of css(for large number of data)
+                }
+                else {
+                    $("#errEmail2").html("Valid").addClass("ok").removeClass("notok");
+                }
+
+            })
+            $("#txtPwd2").blur(function () {
+                let pwd = $(this).val();
+                let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+                let res = regex.test(pwd);
+                if (res == false) {
+                    $("#errPwd2").html("Invalid").addClass("notok").removeClass("ok");
+                }
+                else {
+                    $("#errPwd2").html("Valid").addClass("ok").removeClass("notok");
+                }
+
+            })
+        })
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

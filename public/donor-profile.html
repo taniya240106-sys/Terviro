@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    function doShowPrev(fileCtrl, previmg) {
+
+      const file = fileCtrl.files[0];
+
+      if (file) {
+        previmg.src = URL.createObjectURL(file);
+      }
+    }
+  </script>
+  <script>
+      function setEmail(){
+        document.getElementById("inputEmail").value=localStorage.getItem("activeuser")
+      }
+      
+    </script>
+  <script>
+    $(document).ready(function () {
+      $("#btnGetProfile").click(function () {
+        let obj = {
+          url: "/fetch-one",
+          data: {
+            emailidKuch: $("#inputEmail").val()
+          }
+        }
+        $.ajax(obj).then(function (jsonAry) {
+          alert(JSON.stringify(jsonAry));
+          $("#prevAadhar").prop("src", jsonAry[0].acardpath);        //("#prevAadhar" is id
+          $("#prevProfile").prop("src", jsonAry[0].picpath);
+          $("#inputName").val(jsonAry[0].name);
+          $("#inputMobile").val(jsonAry[0].mobile);
+          $("#inputAddress").val(jsonAry[0].address);
+          $("#inputCity").val(jsonAry[0].city);
+          $("#hdnacard").val(jsonAry[0].acardpath);  
+          $("#hdnpic").val(jsonAry[0].picpath);           
+
+        }).fail(function (err) {
+          alert(err);
+        })
+      })
+    })
+
+  </script>
+
+</head>
+
+<body class="bg-light" onload="setEmail()">
+ <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;"> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container mt-4 border shadow">
+    <div class="row "> <!-- row of donor pf strt -->
+      <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+     <h3>Donor Profile</h3>
+      </div> <!-- div of donor pf end -->
+    </div>
+    <!-- action="/donor-process" → Sends the form data to the /donor-process route in your Express server.
+method="post" → Uses the POST method to send data.
+enctype="multipart/form-data" → Required when the form contains <input type="file">. -->
+    <form enctype="multipart/form-data" method="post" class="form-control">
+      <input type="hidden" id="hdnacard" name="hdnacard">
+       <input type="hidden" id="hdnpic" name="hdnpic">
+      <!-- align-items-end  for btn to align with email -->
+      <div class="row align-items-end"> <!-- email div  row st -->
+        <div class="col-md-8">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail" name="inputEmail" readonly>
+        </div>
+
+        <div class="col-md-4">
+          <button type="button" class="btn btn-outline-primary  w-100" id="btnGetProfile">Get Profile Data</button>
+        </div>
+
+      </div>
+      <!-- row end -->
+      <!-- div of row start-->
+      <div class="row g-5">
+        <!-- div of name start-->
+        <div class="col-md-6">
+          <label for="inputName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputName" name="inputName">
+        </div><!-- div of name start-->
+
+        <div class="col-md-6"> <!-- div of mobile start-->
+          <label for="inputMobile" class="form-label">Mobile</label>
+          <input type="text" class="form-control" id="inputMobile" name="inputMobile">
+        </div><!-- div of mobile end-->
+      </div>
+      <!-- div of row end-->
+      <!-- div of strt end-->
+      <div class="row mt-3">
+        <!-- addrss -->
+        <div class="col-md-8">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="1234 Main St">
+        </div>
+        <!-- addrss -->
+
+        <!-- city -->
+        <div class="col-md-4">
+          <label for="inputCity" class="form-label">City</label>
+          <input type="text" class="form-control" id="inputCity" name="inputCity">
+
+        </div>
+      </div><!-- div of row end-->
+
+      <div class="row mt-3"><!-- div of row strt-->
+        <div class="col-md-6">
+          Upload Aadhaar Card:
+          <br>
+          <input type="file" class="form-control" name="acard" onchange="doShowPrev(this,prevAadhar)">
+          <br>
+          <img src="" id="prevAadhar" class="border rounded shadow mt-2" width="100" height="100">
+        </div>
+
+        <div class="col-md-6">
+          Upload Profile Pic:
+          <br>
+          <input type="file" class="form-control" name="profilePic" onchange="doShowPrev(this,prevProfile)">
+          <br>
+          <img src="" id="prevProfile" class="border rounded shadow mt-2" width="100" height="100">
+        </div>
+      </div><!-- div of row end-->
+
+      <!-- btn -->
+      <div class="row mt-4">
+        <div class="col-md-6  text-center">
+          <!-- px,py padding cls in btstrap -->
+          <button type="submit" formaction="/send-data-donor" class="btn btn-outline-primary px-5 py-2" id="btnsend">Send TO
+            Server</button>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <center>
+            <button type="submit" formaction="/update-data-donor" class="btn btn-outline-primary px-5 py-2"
+              id="btnprofileupdate"> Modify My Profile</button>
+          </center>
+        </div>
+      </div>
+
+    </form>
+  </div> <!--  div of ctnr cls   -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

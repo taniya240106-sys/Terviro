@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        function doShowPrev(fileCtrl, prev) {
+
+            const file = fileCtrl.files[0];
+
+            if (file) {
+                prev.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
+    <script>
+        function enabledisableAmount() {
+           /* if (document.getElementById("radSale").checked){
+                document.getElementById("inputAmount").disabled=false;
+            } else{
+                 document.getElementById("inputAmount").disabled=true;
+            }*/
+             $("#radSale").change(function () {
+            $("#inputAmount").prop("disabled", false);
+        });
+                $("#radDonation").change(function () {
+                $("#inputAmount").prop("disabled", true);
+            
+            });
+        }
+
+    </script>
+    <script>
+    function setEmail(){
+        document.getElementById("inputEmail").value=localStorage.getItem("activeuser")
+      }
+  </script>
+</head>
+
+<body style="background:linear-gradient(to right,#f8f9fa,#eef2f7);" onload="setEmail()">
+     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;"> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+    <div class="container border shadow">
+        <div class="row g-4 mt-1"> <!-- row of donor pf strt -->
+            <!-- <div class="col-md-12 bg-danger text-white text-center py-2 rounded">
+                <center>Avail Equipment </center>
+            </div> -->
+            <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+                <h3> Avail Medical Equipment</h3>
+                <!-- <small>Help someone by donating or selling unused equipment</small> -->
+            </div>
+        </div>
+        <form enctype="multipart/form-data" method="post" class="form-control">
+            <div class="row g-4 mt-1">
+                <div class="col-md-6">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                        placeholder="Enter your email">
+                </div>
+            </div>
+            <!-- --------------------- -->
+
+            <div class="row g-4 mt-1">
+                <div class="col-md-6">
+                    <label for="inputEquip" class="form-label">Medical Equipment</label>
+                    <input type="text" class="form-control" id="inputEquip" name="inputEquip">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputEquip" class="form-label">Medical Equipment Condition </label>
+                    <select class="form-select" id="condition" name="condition" aria-label="Default select example">
+                        <option selected disabled>Choose Equipment Condition </option>
+                        <option value="NEW">NEW</option>
+                        <option value="GOOD">GOOD</option>
+                        <option value="POOR">POOR</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row g-4 mt-1">
+                <div class="col-md-3">
+                    <input class="form-check-input" type="radio" value="Donation" name="radioAmount" id="radDonation"
+                        onclick="enabledisableAmount()">
+                    <label class="form-check-label" for="radioAmount">Donation</label>
+                </div>
+
+                <div class="col-md-3">
+                    <input class="form-check-input" type="radio" value="Sale" name="radioAmount" id="radSale"
+                        onclick="enabledisableAmount()">
+                    <label class="form-check-label" for="radioAmount">For Sale</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputAmount" class="form-label">Amount</label>
+                    <input type="number" class="form-control" id="inputAmount" disabled name="inputAmount"
+                        placeholder=" ₹ 0">
+
+                </div>
+            </div>
+            <div class="row g-4 mt-1">
+                <div class="col-md-6">
+                    Upload Profile Pic:
+                    <br>
+                    <input type="file" class="form-control" name="Pic" onchange="doShowPrev(this,prevPic)">
+                    <br>
+                    <img src="" id="prevPic" class="border rounded shadow mt-2" width="170" height="170">
+                </div>
+                <div class="col-md-6">
+                    Upload Profile Pic :
+                    <br>
+                    <input type="file" class="form-control" name="Pic2" onchange="doShowPrev(this,prevPic2)">
+                    <br>
+                    <img src="" id="prevPic2" class="border rounded shadow mt-2" width="170" height="170">
+                </div>
+            </div>
+
+            <div class="row g-4 mt-1">
+                <div class="col-md-6">
+                    <label for="floatingTextarea">Comments</label>
+                    <textarea class="form-control" name="inputInfo" placeholder="Leave a comment here"
+                        id="inputInfo"></textarea>
+                </div>
+            </div>
+            <div class="row g-4 mt-1">
+                <div class="col-md-12">
+                    <center> <button type="submit" formaction="/equip-data" class="btn btn-outline-primary px-5 shadow"
+                            id="btnavail" name="btnavail">Avail For Needy's</button></center>
+                </div>
+
+            </div>
+        </form>
+    </div> <!-- ctnr class div-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

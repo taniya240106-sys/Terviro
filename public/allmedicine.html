@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+    <style>
+        .card {
+            /* Makes hover animation smooth otherwise it happen immediatly(movement)*/
+            transition: 0.3s;
+        }
+
+        /* Move card up and add shadow  transform=change pos,translate move up down*/
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
+        }
+    </style>
+
+    <script>
+        let myModule = angular.module("moduleKuchBhi", []);
+        let myController = myModule.controller("controllerKuchBhi", function ($scope, $http) {
+
+            $scope.doShowAllMed = function () {
+                let url = "/fetch-Allmedicine";
+                $http.get(url).then(function (resp) {
+                    // alert(JSON.stringify(resp.data))
+                    $scope.jsonArray = resp.data;
+                }, function (err) {
+                    alert(err);
+                });
+            }
+            $scope.doShowMedDetail = function (ridd) {
+                let url = "/fetch-onemedDetail?ridKuch=" + ridd;
+                $http.get(url).then(function (respp) {
+                    $scope.jsonARRAY = respp.data;
+                }, function (err) {
+                    alert(err);
+                });
+            }
+
+        })
+    </script>
+
+</head>
+
+<body ng-app="moduleKuchBhi" ng-controller="controllerKuchBhi" ng-init="doShowAllMed()">
+
+
+    <div class="row text-center bg-info-subtle fixed-top ">
+        <h2 class="text-center text-success fw-bold mb-4 "> 💊 Available Medicines</h2>
+    </div>
+
+    <div class="container my-5">
+        <div class="row g-3 mt-4">
+            <div class="col-md-3" ng-repeat="obj in jsonArray">
+                <div class="card shadow border-0 rounded-4 h-100">
+                    <img src="{{obj.picurl}}" height="100" class="card-img-top" style="height:200px; object-fit:cover;"
+                        alt="...">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="fw-bold text-primary">
+                            💊 {{obj.medname}}
+                        </h5>
+                        <p class="card-text">📧:{{obj.emailid}}</p>
+                        <!-- <p class="card-text">Mediciene Name 💊:{{obj.medname}}</p> -->
+                        <p class="card-text"> 📦 Quantity: {{obj.qty}}</p>
+                        <!-- 🆔 RID :{{obj.rid}} -->
+                        <a href="#" class="btn btn-success w-100 rounded-pill" ng-click="doShowMedDetail(obj.rid)"
+                            data-bs-toggle="modal" data-bs-target="#SelmedModal" class="btn btn-outline-primary">View
+                            Details</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="SelmedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: lightblue;">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sr no.</th>
+                                    <th scope="col">RID</th>
+                                    <th scope="col">Email Id</th>
+                                    <th scope="col">Medicine Name</th>
+                                    <th scope="col">Exp. Date</th>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Info</th>
+                                    <th scope="col">Picture</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="obj in jsonARRAY">
+
+                                    <td>{{index+1}}</td>
+                                    <td>{{obj.rid}}</td>
+                                    <td>{{obj.emailid}}</td>
+                                    <td>{{obj.medname}}</td>
+                                    <td>{{obj.expdate}}</td>
+                                    <td>{{obj.company}}</td>
+                                    <td>{{obj.packing}}</td>
+                                    <td>{{obj.qty}}</td>
+                                    <td>{{obj.info}}</td>
+                                    <td>
+                                        <center>
+                                            <img src={{obj.picurl}} width="50" height="50" alt="">
+                                        </center>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

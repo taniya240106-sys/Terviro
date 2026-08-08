@@ -1,0 +1,27 @@
+loaded_h_0(function(_){var window=this;
+_.sJr=_.y("eKTA6e",[_.Co]);
+_.v("eKTA6e");
+var lCH=function(a){var b,c=(b=a.Lq.find("#fbarcnt"))==null?void 0:b.hb();c!=null&&(b=c.getBoundingClientRect(),a.oa=b.top>=window.innerHeight?0:b.bottom<=window.innerHeight?c.offsetHeight:Math.abs(b.top-window.innerHeight))},nCH=function(a){var b=a.Lq.find("#searchform").hb();if(b!=null){var c;let f=(c=a.Lq.find("#UpCcGe"))==null?void 0:c.hb();if(!(c=f!=null&&f.getBoundingClientRect().bottom>=82?!0:!1)){let g;c=(g=a.Lq.find("#hdtb-sc"))==null?void 0:g.hb();c=c!=null&&c.getBoundingClientRect().bottom>=
+82?!0:window.scrollY<=55}if(c)a.getRoot().setStyle({top:"",left:"",right:"",position:"",width:"",height:`calc(100vh - ${a.Aa+a.oa+24}px)`});else if(b.classList.contains("minidiv")){var d,e=(d=a.getRoot().parent())==null?void 0:d.hb();d=e!=null?e.offsetWidth:0;e=_.ue(a.getRoot().el());b=mCH(a,e)+20;a.getRoot().setStyle({top:"82px",left:e?"":`${b}px`,right:e?`${b}px`:"",position:"fixed",width:`${d}px`,height:`calc(100vh - ${82+a.oa+12}px)`})}else d=(e=a.getRoot().parent())==null?void 0:e.hb(),d=d!=
+null?d.offsetWidth:0,e=_.ue(a.getRoot().el()),b=mCH(a,e)+20,a.getRoot().setStyle({top:"94px",left:e?"":`${b}px`,right:e?`${b}px`:"",position:"fixed",width:`${d}px`,height:`calc(100vh - ${94+a.oa+12}px)`})}},pCH=async function(a,b){var c=(0,_.Wf)(),d=c();c=c(1);try{a.Rx||(a.Rx=c(await d(oCH(a))),c(await d(_.r$d(a.Rx)))),c(await d(a.Rx.transition(b,a.hxb())))}finally{d()}},oCH=async function(a){var b=(0,_.Wf)(),c=b();b=b(1);try{return b(await c(_.eg(a,{service:{Rx:_.w$d}}))).service.Rx}finally{c()}},
+mCH=function(a,b){var c;a=(c=a.Lq.find("#center_col"))==null?void 0:c.hb();if(a==null)return 0;c=a.getBoundingClientRect();return b?window.innerWidth-c.left:c.right},qCH=class extends _.Js{static Ta(){return{service:{window:_.Do}}}constructor(a){super(a.Na);this.oa=this.Aa=0;this.Lq=a.service.window;_.ki(this.getData("esm"),!1)&&(lCH(this),this.Aa=this.getRoot().hb().getBoundingClientRect().y+window.scrollY,this.getRoot().setStyle({height:`calc(100vh - ${this.Aa+this.oa+24}px)`,"max-width":"100%"}),
+window.addEventListener("scroll",()=>{lCH(this);nCH(this)}),window.addEventListener("resize",()=>{lCH(this);nCH(this)}),_.Tg(document.body,"Vf3xqc",()=>{lCH(this);nCH(this)}))}Ca(){var a=this.Ya("Ij5xHc");a&&_.HRa(a,"yB02Ub");_.ki(this.getData("esm"),!1)&&((a=this.Ya("Zaj5Ze"))&&a.setStyle({display:"none"}),this.Lq.get().requestAnimationFrame(()=>{lCH(this);nCH(this)}))}async Ba(a){var b=(0,_.Wf)(),c=b();b=b(1);try{if(this.xc!=null||(this.xc=b(await c(this.RHc()))),this.xc){var d=_.UzF(a.data.viewport),
+e=_.Ph(this.xc.Hf());for(let [f,g]of Object.entries(d))_.jo(e,f,g);_.GNa(e,"ved");a.data.UGd!==""&&_.jo(e,"ved",a.data.UGd);_.GNa(e,"start");b(await c(pCH(this,e.toString())))}}finally{c()}}async RHc(){var a=(0,_.Wf)(),b=a();a=a(1);try{return a(await b(_.eg(this,{service:{xc:_.Bx}}))).service.xc}finally{b()}}hxb(){return{feature:this,kma:"center_col",BVc:!1,callbacks:{QXa:({KB:a})=>{a.remove()}}}}};qCH.prototype.$wa$os61Yc=function(){return this.Ba};qCH.prototype.$wa$szHr9c=function(){return this.Ca};
+_.Ls(_.sJr,qCH);
+_.x();
+_.x0e=_.y("tolejc",[_.Lr]);
+_.v("tolejc");
+_.F0e=class extends _.Go{static Ta(){return{service:{Mh:_.dH}}}constructor(a){super();this.Mh=a.service.Mh}Ipa(a){return this.Mh.prefetch(a)}oa(a){var b=a.pluginData;if(_.hi(_.B0e)(b)){var c=12;_.y0e(_.A0e(b,"local-place-viewer"),"lcl_pv");b=(0,_.E0e)(b)}else c=38,_.fh(b,3,a.entrypoint.id||null),b=(0,_.w0e)(b);var d=Object.assign({},a);d=(delete d.pluginData,d);this.Mh.showViewerLite(Object.assign({},d,{bqa:b,NGb:a.entrypoint.hasAttribute("data-ssid"),contentPluginType:c,viewerType:10}))}};
+_.ig(_.x0e,_.F0e);
+_.x();
+_.kRf=_.y("IKqJbf",[_.x0e]);
+_.v("IKqJbf");
+var lRf=class extends _.Js{static Ta(){return{jsdata:{Do:_.qM},service:{jt:_.F0e}}}constructor(a){super(a.Na);this.Do=a.jsdata.Do;this.jt=a.service.jt;_.Gxf(this.jt,this.Ya("ZfUr6c").el())}oa(a){a.targetElement.hb().matches("a[href]:not([data-open-viewer]), a[href]:not([data-open-viewer]) *")||(_.LO(this.jt,this.Do,a.ub.el(),_.MO(a.ub)),a.event.preventDefault())}Aa(a){_.LO(this.jt,this.Do,a.ub.el(),_.MO(a.data.element),a.data.PGa);a.data.Bu.event.preventDefault()}l4a(){return _.Ixf(this.Do)}C4a(){return _.Hxf(this.Do)}};
+lRf.prototype.$wa$wwV0Hd=function(){return this.C4a};lRf.prototype.$wa$cDqAj=function(){return this.l4a};lRf.prototype.$wa$XX6jIe=function(){return this.Aa};lRf.prototype.$wa$IEAdff=function(){return this.oa};_.Ls(_.kRf,lRf);
+_.x();
+_.Wgi=_.y("FSYo0b",[]);
+_.v("FSYo0b");
+var Xgi=class extends _.Js{constructor(a){super(a.Na)}oa(a){a.event.stopPropagation();a.event.preventDefault();this.Ya("kr6aWb").isEmpty()||(a=this.Ya("kr6aWb").el(),this.Jc(a,_.bp,b=>{b.open()}),_.fw(this.Ja("cXlP2").el(),{userAction:3}))}};Xgi.prototype.$wa$OkAPUc=function(){return this.oa};_.Ls(_.Wgi,Xgi);
+_.x();
+});
+// Google Inc.

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   <script>
+    function setEmail(){
+        document.getElementById("inputEmail").value=localStorage.getItem("activeuser")
+      }
+  </script>
+    <script>
+        function doShowPrev(fileCtrl, prev) {
+            const file = fileCtrl.files[0];
+            if (file) {
+                prev.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
+</head>
+
+<body onload="setEmail()">
+      <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;"> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="text-center mb-4">
+        <i class="fa-solid fa-hand-holding-heart fa-3x text-primary"></i>
+        <h2 class="fw-bold text-primary mt-3">Needy Profile</h2>
+        <p class="text-muted">Connect with NGOs for support and assistance.</p>
+    </div>
+
+    <form action="/ai-needy-profile" method="post" enctype="multipart/form-data">
+
+        <div class="row align-items-end justify-content-center g-3">
+            <div class="col-md-4">
+                <label for="inputEmail" class="form-label">Email Id</label>
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                    placeholder="Enter your email">
+            </div>
+
+            <div class="col-md-4">
+                <label for="inputMobile" class="form-label">Mobile Number</label>
+                <input type="text" class="form-control" id="inputMobile" name="inputMobile"
+                    placeholder="Enter your Mobile No.">
+            </div>
+
+        </div>
+
+        <div class="row align-items-end justify-content-center g-3">
+            <div class="col-md-4">
+                Upload Aadhaar Card Front Pic:
+
+                <input type="file" class="form-control" name="AdharfrontPic" onchange="doShowPrev(this,AdharfrontPic)">
+
+                <img src="" id="AdharfrontPic" class="border rounded shadow mt-2" width="180" height="110">
+            </div>
+
+            <div class="col-md-4">
+                Upload Aadhaar Card Rear Pic:
+
+                <input type="file" class="form-control" name="AdharBackPic" onchange="doShowPrev(this,AdharBackPic)">
+
+                <img src="" id="AdharBackPic" class="border rounded shadow mt-2" width="180" height="110">
+            </div>
+
+        </div>
+
+        <div class="text-center mt-3">
+            <button class="btn btn-outline-primary btn-lg px-5">
+                Upload Details
+            </button>
+        </div>
+
+    </form>
+
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+</html>

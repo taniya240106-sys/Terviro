@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        function doShowPrev(fileCtrl, prev) {
+            const file = fileCtrl.files[0];
+            if (file) {
+                prev.src = URL.createObjectURL(file);
+            }
+        }
+
+    </script>
+    <script>
+        function setEmail() {
+            document.getElementById("inputEmail").value = localStorage.getItem("activeuser")
+        }
+    </script>
+</head>
+
+<body onload="setEmail()">
+     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+       <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+    <!-- <button class="btn btn-outline-danger" type="button" id="logout" onclick="logout()">
+          <i class="bi bi-box-arrow-right"></i>LOGOUT</button> -->
+
+
+      </div>
+    </div>
+  </nav>
+    <div class="container border mt-3 mb-5">
+        <div class="row">
+            <div class="card-header bg-primary text-center py-3">
+                <h3 class="mb-0">NGO Registration</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 border">
+                <form id="ngoForm" method="post" action="/ngo-reg" enctype="multipart/form-data">
+                    <center>
+                        <div class="text-center col-md-6 mt-4">
+                            <input type="file" class="form-control" id="regproof" name="regproof"
+                                onchange="doShowPrev(this,prevregproof)">
+                            <br>
+                            <img src="" id="prevregproof" name="prevregproof" class="img-thumbnail rounded shadow mt-3"
+                                width="180" height="180">
+                            <br>
+                            Registration Proof
+                        </div>
+                    </center>
+            </div>
+            <div class="col-md-8">
+                <div class="row g-4 mt-2">
+                    <div class="col-md-12">
+                        <label for="inputEmail4" class="form-label">Email Id</label>
+                        <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+                    </div>
+                </div>
+                <div class="row g-4 mt-2">
+                    <div class="col-md-4">
+                        <label for="inputngoName" class="form-label">Ngo Name</label>
+                        <input type="text" class="form-control" id="inputngoName" name="inputngoName">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputreg" class="form-label">Registration Office</label>
+                        <input type="text" class="form-control" id="inputreg" name="inputreg">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputCity" class="form-label">City</label>
+                        <input type="text" class="form-control" id="inputCity" name="inputCity">
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-4">
+                            <label for="inputWebsite" class="form-label fw-semibold">Website</label>
+                            <input type="text" class="form-control" id="inputWebsite" name="inputWebsite"
+                                placeholder="https://www.example.org">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputContact" class="form-label fw-semibold">Contact Number</label>
+                            <input type="text" class="form-control" id="inputContact" name="inputContact" placeholder="Enter contact number">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputSince" class="form-label fw-semibold">Established Since</label>
+                            <input type="text" class="form-control" id="inputSince" name="inputSince"  placeholder="e.g. 2015">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label for="inputChairPerson" class="form-label fw-semibold">ChairPerson</label>
+                            <input type="text" class="form-control" id="inputChairPerson" name="inputChairPerson" placeholder="Enter chairperson name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputWorks" class="form-label fw-semibold">NGO Works</label>
+                            <input type="text" class="form-control" id="inputWorks" name="inputWorks">
+                        </div>
+
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label for="inputregno" class="form-label fw-semibold">Registration Number</label>
+                            <input type="text" class="form-control" id="inputregno" name="inputregno"
+                                placeholder="e.g. REG/BTI/2024/001">
+                        </div>
+                    </div>
+
+            <!-- --btn---> 
+
+                    <div class="row g-4 mt-2">
+                        <div class="text-center mt-4 mb-3">
+                            <button type="submit" class="btn btn-primary  rounded-pill shadow px-5  py-2 fw-semibold" id="btnreg"
+                                name="btnreg">
+                                <i class="bi bi-person-plus-fill me-2"></i>
+                                Register Now
+                            </button>
+                        </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

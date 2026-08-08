@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+</head>
+<script>
+  let myModule = angular.module("mouduleKuch", []);
+  let myController = myModule.controller("controllerKuch", function ($scope, $http) {
+
+    $scope.doShowNGOCities = function () {
+
+      let url = "/Show-NgoCities";
+      $http.get(url).then(function (resp) {
+        // alert(JSON.stringify(resp.data))
+        $scope.jsonCityArray = resp.data;
+      }, function (err) {
+        alert(err);
+      });
+    }
+
+    // -----------------//
+    $scope.doShowNgoByCity = function () {
+      //   bcoz of ng-model="selCity"  $scope.selCity = "Noida";           
+      let url = "/Show-ngoByCity?city=" + $scope.selectedCity;
+      $http.get(url).then(function (resp) {
+        // alert($scope.selectedCity);
+        // alert(JSON.stringify(resp.data))
+        // server sends the filtered medicine list back to Angular. Angular stores it in jsonArrayMed
+        $scope.jsonngoArray = resp.data;
+      }, function (err) {
+        alert(err);
+      });
+
+    }
+  });
+</script>
+<style>
+  .table-responsive {
+    border-radius: 10px;
+    background: white;
+}
+
+.table thead th {
+    white-space: nowrap;
+    font-size: 14px;
+    padding: 12px 15px;
+}
+
+.table tbody td,
+.table tbody th {
+    padding: 12px 15px;
+    font-size: 14px;
+}
+
+.table tbody tr:hover {
+    background-color: #f5f9ff;
+}
+
+.ngo-picture {
+    object-fit: cover;
+    border: 2px solid #e9eef5;
+}
+</style>
+<body ng-app="mouduleKuch" ng-controller="controllerKuch" ng-init="doShowNGOCities()">
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="pics/logo1.jpeg" alt="Terviro" style="height:45px; width:auto; object-fit:contain;"> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="text-center mb-4">
+    <i class="bi bi-buildings-fill text-primary" style="font-size:55px;"></i>
+    <h2 class="fw-bold text-primary mt-2"> NGO Finder</h2>
+    <p class="text-muted"> 🤝🏻Find trusted NGOs in your city</p>
+  </div>
+
+
+  <div class="card shadow border-0 mb-4">
+    <div class="card-body">
+      <!-- City textbox and button -->
+
+
+      <div class="container">
+        <div class="row align-items-end justify-content-center g-3">
+
+          <div class="col-md-5">
+            <label class="form-label fw-bold text-primary">Choose City</label>
+            <input list="city-list" type="text" class="form-control-lg" ng-model="selectedCity"
+              placeholder=" Select  City...">
+            <datalist id="city-list">
+              <!-- ng-repeat fills the medicine datalist with only the medicines available in the selected city. -->
+              <option ng-repeat="obj in jsonCityArray" value="{{obj.city}}"></option>
+            </datalist>
+          </div>
+
+          <div class="col-md-3">
+            <button class="btn btn-outline-primary btn-lg w-100" ng-click="doShowNgoByCity()">
+              <i class="bi bi-search"></i> Find NGOs
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-4">
+    <h4 class="text-center text-primary mb-3">
+      <i class="bi bi-building"></i> NGO Details
+    </h4>
+    <div class="table-responsive shadow-sm rounded">
+      <div class="row align-items-center">
+
+
+        <table class="table table-hover table-bordered align-middle text-center mb-0">
+          <thead class="table-primary">
+            <tr>
+
+              <th scope="col">Sr.No</th>
+              <th scope="col">EmailId</th>
+              <th scope="col"> NGO Name</th>
+              <th scope="col">Registration Office </th>
+              <th scope="col">City</th>
+              <th scope="col">Website </th>
+              <th scope="col">Contact no.</th>
+              <th scope="col">Established</th>
+              <th scope="col">Chairperson Name </th>
+              <th scope="col">Works</th>
+              <th scope="col">Registration no. </th>
+              <th scope="col">Picture</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="obj in jsonngoArray">
+              <th>{{$index+1}}</th>
+              <td>{{obj.emailid}}</td>
+              <td>{{obj.ngo}}</td>
+              <td>{{obj.regoffice}}</td>
+              <td>{{obj.city}}</td>
+              <td>{{obj.website}}</td>
+              <td>{{obj.contactno}}</td>
+              <td>{{obj.since}}</td>
+
+              <td>{{obj.chairperson}}</td>
+
+              <td>{{obj.ngoworks}}</td>
+              <td>{{obj.regnumber}}</td>
+              <td>
+                <center>
+                  <img src="{{obj.picurl}}" class="rounded shadow-sm" width="60" height="60" alt="NGO Picture">
+                </center>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
